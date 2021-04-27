@@ -1,8 +1,8 @@
 import { createStore } from "redux"
 
-// const addButton = document.getElementById("add")
-// const minusButton = document.getElementById("minus")
-// const counter = document.querySelector("span")
+const addButton = document.getElementById("add")
+const minusButton = document.getElementById("minus")
+const counter = document.querySelector("span")
 
 // reducer
 const countModifier = (state = 0, action) => {
@@ -20,11 +20,11 @@ const countModifier = (state = 0, action) => {
 const countStore = createStore(countModifier)
 
 // send message to the store
-countStore.dispatch({ type: "ADD"})
-countStore.dispatch({ type: "ADD"})
-countStore.dispatch({ type: "ADD"})
-countStore.dispatch({ type: "ADD"})
-countStore.dispatch({ type: "ADD"})
-countStore.dispatch({ type: "MINUS"})
+const handleAdd = () => countStore.dispatch({type: "ADD"})
+const handleMinus = () => countStore.dispatch({type: "MINUS"})
+const onButtonClick = () => counter.innerText = countStore.getState()
 
-console.log(countStore.getState())
+addButton.addEventListener("click", handleAdd)
+minusButton.addEventListener("click", handleMinus)
+countStore.subscribe(onButtonClick)
+
